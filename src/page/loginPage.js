@@ -2,8 +2,10 @@
 import React, { useState } from "react";
 import api from "../api/axios";
 import Input from "../components/input";
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -23,11 +25,14 @@ function LoginPage() {
       // 공통 응답: { code, message, status, data: { token } }
       if (res.data.code === "SUCCESS") {
         const jwt = res.data.data.token;
+        const username = res.data.data.username;
         setToken(jwt);
         setMessage("로그인 성공!");
 
-        // 나중에: localStorage 등에 저장해서 이후 요청에 사용
-        // localStorage.setItem("accessToken", jwt);
+        navigate("/");
+
+        localStorage.setItem("accessToken", jwt);
+        localStorage.setItem("username", username);
       } else {
         setMessage(res.data.message || "로그인 실패");
       }
@@ -82,6 +87,7 @@ function LoginPage() {
         </div>
       )}
       </form>
-    )}
+  );
+}
 
 export default LoginPage;
