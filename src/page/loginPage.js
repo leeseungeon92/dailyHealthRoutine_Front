@@ -4,7 +4,7 @@ import api from "../api/axios";
 import Input from "../components/input";
 import { useNavigate } from "react-router-dom";
 
-function LoginPage() {
+function LoginPage({onLogin}) {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -33,6 +33,10 @@ function LoginPage() {
 
         localStorage.setItem("accessToken", jwt);
         localStorage.setItem("username", username);
+
+        onLogin(jwt);
+
+        navigate("/");
       } else {
         setMessage(res.data.message || "로그인 실패");
       }

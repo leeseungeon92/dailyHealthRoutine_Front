@@ -32,7 +32,7 @@ function Navbar(){
         localStorage.removeItem("username");
         localStorage.removeItem("accessToken");
         setMe(null);
-        navigate("/");
+        window.location = "/";
     }
 
     return(
