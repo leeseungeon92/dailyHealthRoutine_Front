@@ -8,6 +8,7 @@ import Navbar from "./components/navBar";
 function App() {
 
   const[token, setToken] = useState(localStorage.getItem("accessToken"));
+  
   const handleLogin = (newToken) => {
     localStorage.setItem("accessToken", newToken);
     setToken(newToken);

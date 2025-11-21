@@ -6,13 +6,24 @@ import api from "../api/axios";
 function HomePage({token}) {
 
     const [routine, setRoutine] = useState(null);
+    const [completed, setCompleted] = useState(false);
     const showRoutine = async (e) => {
         e.preventDefault();
         try {
             const res = await api.get("/api/exercise/getRoutine");
             console.log(res.data);
             setRoutine(res.data);
+            setCompleted(res.data.completed);
         } catch (err) {
+            console.log(err);
+        }
+    };
+
+    const completeExercise = async () => {  
+        try{
+            await api.post("/api/exercise/complete");
+            setCompleted(true);
+        } catch(err){
             console.log(err);
         }
     };
@@ -43,6 +54,7 @@ function HomePage({token}) {
                             </li>
                         )
                     })}</h3>
+                    <button onClick={completeExercise} disabled={completed}>{completed ? "이미 오늘 운동을 완료했습니다." : "오늘 운동 완료!"}</button>
                 </div>
             )}
         </div>

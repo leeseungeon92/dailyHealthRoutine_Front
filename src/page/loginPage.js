@@ -24,17 +24,17 @@ function LoginPage({onLogin}) {
 
       // 공통 응답: { code, message, status, data: { token } }
       if (res.data.code === "SUCCESS") {
-        const jwt = res.data.data.token;
+        const accessToken = res.data.data.token;
         const username = res.data.data.username;
-        setToken(jwt);
+        setToken(accessToken);
         setMessage("로그인 성공!");
 
         navigate("/");
 
-        localStorage.setItem("accessToken", jwt);
+        localStorage.setItem("accessToken", accessToken);
         localStorage.setItem("username", username);
 
-        onLogin(jwt);
+        onLogin(accessToken);
 
         navigate("/");
       } else {
