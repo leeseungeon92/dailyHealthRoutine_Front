@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import api from "../api/axios";
 import Input from "../components/input";
+import "../css/Signuppage.css";   // ✅ css 적용
 
 function SignupPage() {
   const [username, setUsername] = useState("");
@@ -17,7 +18,6 @@ function SignupPage() {
         password: password,
       });
 
-      // 백엔드 공통 응답 구조: code/message/status/data
       if (res.data.code === "SUCCESS") {
         setMessage("회원가입 성공!");
       } else {
@@ -35,28 +35,34 @@ function SignupPage() {
   };
 
   return (
-    <form onSubmit={handleSignup}>
-      <Input
-        label={"아이디"}
-        value={username}
-        onChange={(e)=> setUsername(e.target.value)}
-        placeHolder={"아이디를 입력해주세요."}
-      />
+    <div className="signup-container">
+      <form className="signup-card" onSubmit={handleSignup}>
+        <h1 className="signup-title">회원가입</h1>
 
-      <Input
-        label={"비밀번호"}
-        type="password"
-        value={password}
-        onChange={(e)=> setPassword(e.target.value)}
-        placeHolder={"비밀번호를 입력해주세요."}
-      />
+        <Input
+          label={"아이디"}
+          value={username}
+          onChange={(e)=> setUsername(e.target.value)}
+          placeHolder={"아이디를 입력해주세요."}
+        />
 
-      <button type="submit">회원가입</button>
+        <Input
+          label={"비밀번호"}
+          type="password"
+          value={password}
+          onChange={(e)=> setPassword(e.target.value)}
+          placeHolder={"비밀번호를 입력해주세요."}
+        />
 
-      {message && (
-        <p style={{ marginTop: "8px", color: "blue" }}>{message}</p>
-      )}
+        <button className="signup-button" type="submit">
+          회원가입
+        </button>
+
+        {message && (
+          <p className="signup-message">{message}</p>
+        )}
       </form>
+    </div>
   );
 }
 

@@ -1,10 +1,10 @@
-// src/pages/LoginPage.jsx
 import React, { useState } from "react";
 import api from "../api/axios";
 import Input from "../components/input";
 import { useNavigate } from "react-router-dom";
+import "../css/Loginpage.css";
 
-function LoginPage({onLogin}) {
+function LoginPage({ onLogin }) {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -22,27 +22,22 @@ function LoginPage({onLogin}) {
         password: password,
       });
 
-      // 공통 응답: { code, message, status, data: { token } }
       if (res.data.code === "SUCCESS") {
         const accessToken = res.data.data.token;
         const username = res.data.data.username;
         setToken(accessToken);
         setMessage("로그인 성공!");
 
-        navigate("/");
-
         localStorage.setItem("accessToken", accessToken);
         localStorage.setItem("username", username);
 
         onLogin(accessToken);
-
         navigate("/");
       } else {
         setMessage(res.data.message || "로그인 실패");
       }
     } catch (err) {
       console.error(err);
-
       if (err.response && err.response.data) {
         setMessage(err.response.data.message || "로그인 실패");
       } else {
@@ -52,45 +47,39 @@ function LoginPage({onLogin}) {
   };
 
   return (
-    <form onSubmit={handleLogin}>
-      <Input 
-        label={"아이디"}
-        value={username}
-        onChange={(e)=>setUsername(e.target.value)}
-        placeHolder={"아이디를 입력하세요."}
-      />
-      <Input 
-        label={"비밀번호"}
-        type="password"
-        value={password}
-        onChange={(e)=>setPassword(e.target.value)}
-        placeHolder={"비밀번호를 입력하세요."}
-      />
+    <div className="login-container">
+      <form className="login-card" onSubmit={handleLogin}>
+        <h1 className="login-title">로그인</h1>
 
-      <button onClick={handleLogin} type="submit">로그인</button>
+        <Input
+          label={"아이디"}
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeHolder={"아이디를 입력하세요."}
+        />
 
-      {message && (
-        <p style={{ marginTop: "8px", color: "blue" }}>{message}</p>
-      )}
+        <Input
+          label={"비밀번호"}
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeHolder={"비밀번호를 입력하세요."}
+        />
 
-      {token && (
-        <div style={{ marginTop: "8px", fontSize: "12px" }}>
-          <div>발급된 토큰:</div>
-          <code
-            style={{
-              display: "block",
-              marginTop: "4px",
-              padding: "4px",
-              border: "1px solid #ccc",
-              maxWidth: "100%",
-              wordBreak: "break-all",
-            }}
-          >
-            {token}
-          </code>
-        </div>
-      )}
+        <button className="login-button" type="submit">
+          로그인
+        </button>
+
+        {message && <p className="login-message">{message}</p>}
+
+        {token && (
+          <div className="login-token-box">
+            <div>발급된 토큰:</div>
+            <div>{token}</div>
+          </div>
+        )}
       </form>
+    </div>
   );
 }
 

@@ -1,0 +1,153 @@
+/* HomePage.css */
+
+.home-container {
+  min-height: 100vh;
+  padding: 32px 16px;
+  background: linear-gradient(135deg, #0f172a, #020617);
+  color: #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-inner {
+  width: 100%;
+  max-width: 900px;
+}
+
+.home-title {
+  font-size: 32px;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 24px;
+  letter-spacing: 1px;
+}
+
+.home-sub {
+  text-align: center;
+  color: #9ca3af;
+  margin-bottom: 24px;
+}
+
+.primary-btn {
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: white;
+  box-shadow: 0 10px 25px rgba(34, 197, 94, 0.3);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, opacity 0.2s ease;
+}
+
+.primary-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 35px rgba(34, 197, 94, 0.4);
+}
+
+.primary-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 18px rgba(34, 197, 94, 0.3);
+}
+
+.primary-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+  box-shadow: none;
+}
+
+/* 루틴 카드 */
+
+.routine-card {
+  margin-top: 24px;
+  padding: 20px;
+  border-radius: 16px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.7);
+}
+
+.routine-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.routine-date {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.routine-status {
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(34, 197, 94, 0.1);
+  color: #4ade80;
+  border: 1px solid rgba(74, 222, 128, 0.3);
+}
+
+.routine-status.completed {
+  background: rgba(52, 211, 153, 0.1);
+  color: #6ee7b7;
+}
+
+/* 운동 리스트 */
+
+.exercise-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.exercise-item {
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 14px;
+  padding: 12px;
+  border: 1px solid rgba(55, 65, 81, 0.8);
+}
+
+.exercise-name {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.exercise-img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 8px;
+  object-fit: cover;
+}
+
+.exercise-meta {
+  font-size: 13px;
+  color: #d1d5db;
+  margin: 2px 0;
+}
+
+.exercise-memo {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-top: 4px;
+}
+
+/* 완료 버튼 영역 */
+
+.complete-section {
+  margin-top: 16px;
+  text-align: right;
+}
+
+.complete-msg {
+  font-size: 13px;
+  color: #a5b4fc;
+  margin-right: 8px;
+}
